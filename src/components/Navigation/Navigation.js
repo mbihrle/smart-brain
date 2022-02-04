@@ -1,7 +1,7 @@
 import React from "react";
 
 const Navigation = ({ onRouteChange, isSignedIn }) => {
-    console.log("state isSignedIn: ", isSignedIn);
+    // console.log("state isSignedIn: ", isSignedIn);
 
     if (isSignedIn) {
         return (

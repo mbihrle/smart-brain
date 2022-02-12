@@ -134,8 +134,8 @@ class App extends Component {
                     onRouteChange={this.onRouteChange}
                 />
 
-                {/* temp for development*/}
-                <div>
+                {/* temp for development header */}
+                {/* <div>
                     <Logo />
                     <Rank
                         name={this.state.user.name}
@@ -146,7 +146,8 @@ class App extends Component {
                         onButtonSubmit={this.onButtonSubmit}
                     />
                     <FaceRecognition boxes={boxes} imageUrl={imageUrl} />
-                </div> 
+                </div>  */}
+                {/* temp for development footer */}
 
                 {route === "home" ? (
                     <div>

@@ -15,6 +15,27 @@ class ProfileIcon extends React.Component {
         };
     }
 
+    removeAuthTokenInSession = (tokenKey) => {
+        window.sessionStorage.removeItem(tokenKey);
+    };
+
+    onSignOut = () => {
+        const tokenKey = "token";
+        const token = window.sessionStorage.getItem(tokenKey);
+        this.removeAuthTokenInSession(tokenKey);
+        fetch("http://localhost:3000/signout", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: token,
+            },
+            body: JSON.stringify({}),
+        })
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+        this.props.onRouteChange("signout");
+    };
+
     toggle = () => {
         this.setState((prevState) => ({
             dropdownOpen: !prevState.dropdownOpen,
@@ -49,9 +70,7 @@ class ProfileIcon extends React.Component {
                     <DropdownItem onClick={this.props.toggleModal}>
                         View Profile
                     </DropdownItem>
-                    <DropdownItem
-                        onClick={() => this.props.onRouteChange("signout")}
-                    >
+                    <DropdownItem onClick={this.onSignOut}>
                         Sign Out
                     </DropdownItem>
                 </DropdownMenu>

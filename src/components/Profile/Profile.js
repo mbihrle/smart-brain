@@ -7,7 +7,7 @@ class Profile extends React.Component {
         this.state = {
             name: this.props.user.name,
             age: this.props.user.age,
-            pet: this.props.user.pet,
+            job: this.props.user.job,
         };
     }
 
@@ -19,8 +19,8 @@ class Profile extends React.Component {
             case "user-age":
                 this.setState({ age: event.target.value });
                 break;
-            case "user-pet":
-                this.setState({ age: event.target.value });
+            case "user-job":
+                this.setState({ job: event.target.value });
                 break;
             default:
                 return;
@@ -28,6 +28,7 @@ class Profile extends React.Component {
     };
 
     onProfileUpdate = (data) => {
+        console.log(data);
         fetch(`http://localhost:3000/profile/${this.props.user.id}`, {
             method: "post",
             headers: {
@@ -47,7 +48,7 @@ class Profile extends React.Component {
 
     render() {
         const { user } = this.props;
-        const { name, age, pet } = this.state;
+        const { name, age, job } = this.state;
         return (
             <div className="profile-modal">
                 <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center bg-white">
@@ -85,16 +86,16 @@ class Profile extends React.Component {
                             name="user-age"
                             id="age"
                         />
-                        <label className="mt2 fw6db" htmlFor="user-pet">
-                            Pet:
+                        <label className="mt2 fw6db" htmlFor="user-job">
+                            Job:
                         </label>
                         <input
                             onChange={this.onFormChange}
                             className="pa2 ba w-100"
-                            placeholder={user.pet}
+                            placeholder={user.job}
                             type="text"
-                            name="user-pet"
-                            id="pet"
+                            name="user-job"
+                            id="job"
                         />
                         <div
                             className="mt4"
@@ -108,7 +109,7 @@ class Profile extends React.Component {
                                     this.onProfileUpdate({
                                         name,
                                         age,
-                                        pet,
+                                        job,
                                     })
                                 }
                                 className="b pa2 grow pointer hover-white w-40 bg-light-blue b--black-20"
